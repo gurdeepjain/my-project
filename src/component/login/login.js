@@ -30,7 +30,7 @@ const Login = () => {
         // Handle successful login
         console.log("Login successful!");
       } else {
-        alert('Invalid username or password.');
+        alert('Invalid credentials.');
       }
    })
    .catch((err) =>{
