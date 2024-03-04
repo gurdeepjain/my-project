@@ -1,50 +1,15 @@
-import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import axios from 'axios'
+import { LogInSignUp } from '../LogIn-SignUp/Login-Signup';
 
-const Login = () => {
-  const [fromData, setFormData] = useState({
-    email:'',
-    password:''
-  })
-  
-  const handelChanges = (e) => {
-    setFormData({
-        ...fromData,
-        [e.target.name]: e.target.value
-    })
-  }
-
-  const headers= {
-    'Content-Type': 'application/json'
-  }
-
-  const payload = JSON.stringify(fromData)
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-   axios.get(`http://localhost:3002/users`)
-   .then((res) =>{
-    const isValidUser = res.data.some(user => user.email === fromData.email && user.password === fromData.password)
-    if (isValidUser) {
-        // Handle successful login
-        console.log("Login successful!");
-      } else {
-        alert('Invalid credentials.');
-      }
-   })
-   .catch((err) =>{
-    alert("Something went wrong")
-   })
-  };
-
+const Login = ({ fromData, handleSubmit, handelChanges }) => {
   return (
     <Container>
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <h2 className="text-center mt-5 mb-4">Login</h2>
+          {/* <LogInSignUp /> */}
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group >
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
@@ -58,7 +23,7 @@ const Login = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group >
               <Form.Label className='mt-3'>Password</Form.Label>
               <Form.Control
                 type="password"
