@@ -4,6 +4,7 @@ import './App.css';
 import Login from "./pages/login/login";
 import Home from "./pages/Home/Home";
 import axios from 'axios';
+import SignUp from './pages/SignUp/SignUp';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,7 +30,7 @@ function App() {
           console.log("Login successful!");
           setIsLoggedIn(true)
         } else {
-          alert('Invalid credentials.');
+          alert('Wrong credentials.');
         }
       })
       .catch((err) => {
@@ -38,16 +39,21 @@ function App() {
   };
   return (
     <div className="">
-     {
-      isLoggedIn ? 
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </Router>
-      :
-      <Login handleSubmit={handleSubmit} handelChanges={handelChanges} fromData={fromData} />
-     }
+      {
+        isLoggedIn ?
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </Router>
+          :
+          <Router>
+            <Routes>
+              <Route path="/" element={<Login handleSubmit={handleSubmit} handelChanges={handelChanges} fromData={fromData} />} />
+              <Route path="/SignUp" element={<SignUp />} />
+            </Routes>
+          </Router>
+      }
     </div>
   );
 }
