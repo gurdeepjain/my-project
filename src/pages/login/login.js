@@ -1,5 +1,6 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { LogInSignUp } from '../LogIn-SignUp/Login-Signup';
+import { Link } from 'react-router-dom';
+
 
 const Login = ({ fromData, handleSubmit, handelChanges }) => {
   return (
@@ -7,7 +8,6 @@ const Login = ({ fromData, handleSubmit, handelChanges }) => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <h2 className="text-center mt-5 mb-4">Login</h2>
-          {/* <LogInSignUp /> */}
           <Form onSubmit={handleSubmit}>
             <Form.Group >
               <Form.Label>Email address</Form.Label>
@@ -40,6 +40,7 @@ const Login = ({ fromData, handleSubmit, handelChanges }) => {
             <Button variant="primary" type="submit" className="w-100 mt-3">
               Login
             </Button>
+            <h6 className="text-center mt-4 mb-4">Don't have an account?<Link to="/SignUp">Sign Up</Link></h6>
           </Form>
         </Col>
       </Row>
